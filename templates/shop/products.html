@@ -1,0 +1,29 @@
+{% extends 'shop/Basic.html' %} {% block title %} Product {% endblock %} {% block body %}
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-5">
+            <img src="/media/{{product.product_imag}}" width=370px hight='400px' alt=""> {% load static %}
+            <button type="button" class="btn btn-lg my-2" style="background-color:rgba(255, 251, 0, 0.973);">
+                <span> <img src="{% static 'shop/shopping-cart.png'%}" height="20px" width="20px" alt=""> </span>
+                <b style="padding: 10px;"> Add To Cart</b>
+            </button>
+
+            <button type="button" class="btn btn-warning btn-lg my-2">
+                <span> <img src="{% static 'shop/shopping-cart.png'%}" height="20px" width="20px" alt=""> </span>
+                <b style="padding: 10px;">Buy Item</b>
+            </button>
+        </div>
+        <div class="col-md-4">
+            <h1>{{product.product_name}}</h1>
+            <h6 style="color:green;font-size: 40px;">Rs. {{product.product_pricse}}</h6>
+            <p>{{product.product_desc}}</p>
+
+        </div>
+        <div class="col-md-3">
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

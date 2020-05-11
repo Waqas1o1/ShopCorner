@@ -1,0 +1,109 @@
+{% extends 'shop/basic.html' %} {% block title%} Checkout - My Awesome Cart{% endblock %} {% block body %}
+<div class="container">
+    <div class="col my-4">
+        <h2>Step 1 - My Awesome Cart Express Checkout - Review Your Cart Items</h2>
+        <div class="my-4">
+            <ul class="list-group" id="items">
+            </ul>
+        </div>
+    </div>
+    <div class="alert alert-primary" role="alert" id='showtotal'>
+    </div>
+    <div class="col my-4 ">
+        <h2>Step 2 - Enter Address & Other Details:</h2>
+        <form method="POST" action="/Shop/checkout/" onsubmit="alartshow()"> {% csrf_token %}
+            <div class="form-row">
+                <div class="form-group col-md-6 ">
+                    <input type="hidden" name="itemsJson" id="itemsJson">
+                    <label for="inputname ">Name</label>
+                    <input type="name " class="form-control " required='true' id="name" name='name' placeholder="Name ">
+                </div>
+                <div class="form-group col-md-6 ">
+                    <label for="inputEmail4 ">Email</label>
+                    <input type="email " class="form-control " required='true' id="email" name='email' placeholder="Email ">
+                </div>
+            </div>
+            <div class="form-group ">
+                <label for="inputAddress ">Address</label>
+                <input type="text " class="form-control " required='true' id="addressline1" name='addressline1' placeholder="1234 Main St ">
+            </div>
+            <div class="form-group ">
+                <label for="inputAddress2 ">Address line 2</label>
+                <input type="text " class="form-control " id="addressline2 " name='addressline2' placeholder="Apartment, studio, or floor ">
+            </div>
+            <div class="form-row ">
+                <div class="form-group col-md-6 ">
+                    <label for="inputCity ">City</label>
+                    <input type="text " class="form-control " required='true' id="city" name='city'>
+                </div>
+                <div class="form-group col-md-4 ">
+                    <label for="inputState ">State</label>
+                    <input type="text " class="form-control " required='true' id="state" name='state' placeholder="Enter State ">
+                </div>
+                <div class="form-group col-md-2 ">
+                    <label for="inputZip ">Zip</label>
+                    <input type="text " class="form-control " required='true' id="zip_code" name='zip_code'>
+                </div>
+            </div>
+            <div class="form-group ">
+                <label for="inputZip ">Phone Number</label>
+                <input type="tel " class="form-control " required='true' id="phone" name='phone'>
+            </div>
+            <button type="submit" id='submit' class="btn btn-success" style="width: 100%;">Place Order</button>
+        </form>
+    </div>
+</div>
+{% endblock %} {% block js %}
+<script>
+    // document.getElementById('#showcart').setAttribute('disabled', 'true');
+    if (localStorage.getItem('cart') == null) {
+        var cart = {};
+    } else {
+        var pricse = 0;
+        cart = JSON.parse(localStorage.getItem('cart'));
+        for (i in cart) {
+            cart[i][2] = cart[i][0] * cart[i][2];
+            pricse += cart[i][2]
+        }
+        console.log(pricse);
+    }
+    if ($.isEmptyObject(cart)) {
+        document.getElementById('submit').style.display = 'none';
+
+        $('#items').append(` <li class="list-group-item d-flex justify-content-between align-items-center">
+                    {% load static %}
+                    <img src="{% static 'shop/dustbin.png'%} " ; height="20px " ; width="20px; alt=" My Img ">
+                    <span class="badge badge-primary badge-pill ">
+                        0
+                     </span>
+                </li>`)
+    } else {
+        var sum = 0;
+        const pricse = 0;
+        for (let i in cart) {
+            name = cart[i][1];
+            qty = cart[i][0];
+            sum += qty;
+            $('#items').append(`<li class="list-group-item d-flex justify-content-between align-items-center ">
+                    ${name}
+                    <span class="badge badge-primary badge-pill ">
+                    ${qty}
+                    </span>
+                    </li>`)
+        }
+    }
+    document.getElementById('showtotal').innerHTML = '<p style="text-align: center;" >' + 'Grand Totoal :' + '<span style="font-size:15px"> Rs.' + pricse + '</span></p>';
+    document.getElementById('cart').innerHTML = sum;
+    $('#itemsJson').val(JSON.stringify(cart));
+
+    function alartshow() {
+        if ('{{thank}}' == 'True') {
+            alert('Thanks for ordering with us. Your order is is {{id}}. Use it to track your order using our order tracker');
+            localStorage.clear();
+            document.location = "/shop";
+        }
+    }
+
+    document.getElementById('showcart').setAttribute('disabled', 'ture');
+</script>
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends 'blog/basic.html' %} {% block body %}
+<div class="container">
+    <div class="row mt-4">
+        <div class="col-md-8 blog-main">
+            <h3 class="pb-4 mb-4 font-italic border-bottom">
+                From the Site of Shoping
+            </h3>
+            {% for i in post %}
+            <div class="blog-post">
+                <h2 class="blog-post-title">{{i.headtitle}}</h2>
+                <p class="blog-post-meta">{{i.pub_date}} <span><img src="/media/{{i.thumbnail}}" alt="thumbnail" width="20px" height="20px"></span></p>
+
+                <p>This blog post shows the content that’s supported and blog about {{i.title}.For more detail that please contact us on our email waqasdevolper@gmail.com or UNA (111-223-89)</p>
+                <hr>
+                <p>We server all kind of catagory expext of those that are not in product list.We take granty about our product i.e make shore its not damage or in that condition that we display to You.</p>
+                <blockquote>
+                    <p>Curabitur blandit tempus porttitor. <strong>Nullam quis risus eget urna mollis</strong> ornare vel eu leo. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                </blockquote>
+                <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
+                <h2>{{i.head0}}</h2>
+                <p>{{i.chead0}}</p>
+                <h3>{{i.head1}}</h3>
+                <p>{{i.chead1}}</p>
+                <h3>{{i.head2}}</h3>
+                <p>{{i.chead2}}</p>
+
+
+
+            </div>
+            {% endfor %}
+            <!-- /.blog-post -->
+
+
+
+
+        </div>
+        <!-- /.blog-main -->
+
+        <aside class="col-md-4 blog-sidebar">
+            <div class="p-4 mb-3 bg-light rounded">
+                <h4 class="font-italic">About</h4>
+                <p class="mb-0">My Awesome Cart <em>started out as a small project and is now</em> the fastest growing e-commerce stores of all times in india and abroad.</p>
+            </div>
+
+
+
+            <div class="p-4">
+                <h4 class="font-italic">Elsewhere</h4>
+                <ol class="list-unstyled">
+                    <div data-width="10%" class="fb-comments" data-href="http://127.0.0.1:8000/Blog/blogpost{{i.product_id}}/" data-numposts="5" data-width=""></div>
+                    <div class="fb-like" data-href="http://127.0.0.1:8000/Blog/blogpost/3/" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true"></div>
+                </ol>
+            </div>
+        </aside>
+        <!-- /.blog-sidebar -->
+
+    </div>
+</div>
+
+{% endblock %}

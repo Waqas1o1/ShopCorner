@@ -1,0 +1,77 @@
+{% extends 'blog/basic.html' %} {%block css%}
+<style>
+    #accordion .card button {
+        color: rgb(37, 192, 37);
+        font-weight: bold;
+    }
+    
+    .card {
+        box-shadow: 4px 3px green;
+    }
+</style>{% endblock %}{% block body %}
+<div class="container">
+    <div class="row">
+        {% for post in DB%}
+        <div class="col-md-6 col-sm-6 ">
+            {% for i in post %}
+            <h4 s>{{i.title}} <span style="display: inline-block;"><img src="/media/{{i.thumbnail}}" alt="Image"  width='50px' height="50px"></span></h4>
+            <div id="accordion">
+                <!-- Head 1 -->
+                <div class="card my-2">
+                    <div class="card-header" id="headingOne">
+                        <h5 class="my-2">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#headingOne{{i.post_id}}" aria-expanded="false" aria-controls="collapseOne">
+                        {{i.head0}} 
+                        </button>
+                        </h5>
+
+                    </div>
+
+                    <div id="headingOne{{i.post_id}}" class="collapse " aria-labelledby="headingOne" data-parent="#accordion">
+                        <div class="card-body text-truncate" id="card-body">
+                            {{i.chead0}}
+                        </div>
+                        <p class="text-right"> <a href="/Blog/blogpost/{{i.post_id}}">readmore....</a></p>
+                    </div>
+                </div>
+                <!-- Head 2 -->
+                <div class="card my-2">
+                    <div class="card-header" id="headingTwo">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#headingtwo{{i.post_id}}" aria-expanded="false" aria-controls="collapseTwo">
+                            {{i.head1}}
+                  </button>
+                        </h5>
+                    </div>
+                    <div id="headingtwo{{i.post_id}}" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                        <div class="card-body" id="card-body">
+                            {{i.chead1}} <a href="/Blog/blogpost/{{i.post_id}}">readmore....</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Head 3 -->
+                <div class="card my-2">
+                    <div class="card-header" id="headingThree">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#headingthree{{i.post_id}}" aria-expanded="false" aria-controls="collapseThree">
+                            {{i.head2}}
+                  </button>
+                        </h5>
+                    </div>
+                    <div id="headingthree{{i.post_id}}" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                        <div class="card-body" id="card-body">
+                            {{i.chead2}} <a href="/Blog/blogpost/{{i.post_id}}">readmore....</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor%}
+        </div>
+        {% endfor%}
+    </div>
+</div>
+
+{% endblock %} {% block js %}
+<script>
+</script>
+{% endblock %}

@@ -1,0 +1,75 @@
+{% extends 'shop/Basic.html' %} {% block titile %} Searched Items {% endblock %}
+<!-- Css Styling -->
+{% block csstyle %}
+<style>
+    canvas,
+    img,
+    video {
+        max-width: 350px !important;
+        height: 350px !important;
+        box-sizing: content-box;
+    }
+</style>
+{% endblock %}
+<!-- Main Body -->
+{% block body %}
+<!-- Loding static -->
+{% load static%} {% for i in searched_item %}
+<!-- Post Image Top -->
+{% if forloop.counter|divisibleby:2 %}
+<!-- Main Card -->
+<div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-2@s uk-margin" uk-grid>
+    <!-- To-Card Image  -->
+    <div class="uk-card-media-left uk-cover-container">
+        <img src="/media/{{i.product_imag}}" alt="Image UP" uk-cover>
+        <canvas width="600" height="400"></canvas>
+
+    </div>
+    <!-- Top card Body -->
+    <div>
+        <div class="uk-card-body">
+            <h3 class="uk-card-title" id="titlepr{{i.id}}">{{i.product_name}}</h3>
+            <p>{{i.product_desc}}</p>
+            <h6 id='pricsepr{{i.id}}' style="color: #e83e8c;">Rs.{{i.product_pricse}}</h6>
+            <!-- Add To Cart Button -->
+            <span id='divpr{{i.id}}' class="divpr ">
+                <button id="pr{{i.id}}" class="uk-button uk-button-danger uk-align-center cart">Add To Cart</button>
+            </span>
+            <!-- Detail Button -->
+            <a href="/Shop/products/{{i.id}}">
+                <button id='qs{{i.id}}' class="uk-button uk-button-primary uk-align-center uk-hover">Detail</button>
+            </a>
+        </div>
+    </div>
+</div>
+<!-- Post Image Down -->
+{% else %}
+<!-- Down card Body -->
+<div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-2@s uk-margin" uk-grid>
+    <div class="uk-flex-last@s uk-card-media-right uk-cover-container">
+        <img src="/media/{{i.product_imag}}" alt="Image DOwn" uk-cover>
+        <canvas width="600" height="400"></canvas>
+    </div>
+    <!-- Down card Image -->
+    <div>
+        <div class="uk-card-body">
+            <h3 class="uk-card-title" id="titlepr{{i.id}}">{{i.product_name}}</h3>
+            <p>{{i.product_desc}}.</p>
+            <h6 id='pricsepr{{i.id}}' style="color: #e83e8c;">Rs.{{i.product_pricse}}</h6>
+            <!-- Add To Cart Button -->
+            <span id='divpr{{i.id}}' class="divpr">
+                <button id="pr{{i.id}}" class="uk-button uk-button-danger uk-align-center cart">Add To Cart</button>
+            </span>
+            <!-- Detail Button -->
+            <a href="/Shop/products/{{i.id}}">
+                <button id='qs{{i.id}}' class="uk-button uk-button-primary uk-align-center uk-hover">Detail</button>
+            </a>
+        </div>
+    </div>
+</div>
+<!-- End ALL  -->
+{% endif %} {% endfor %} {% endblock %} {% block js %}
+<script>
+    document.getElementById('showcart').setAttribute('disabled', 'ture');
+</script>
+{% endblock%}

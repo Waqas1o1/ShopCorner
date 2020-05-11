@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    {% block css %} {% endblock %}
+    <!-- Required meta tags -->
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <title>{% block title%} {% endblock %}</title>
+    <!-- UIkit CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.4.2/dist/css/uikit.min.css" />
+
+    <!-- UIkit JS -->
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.4.2/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.4.2/dist/js/uikit-icons.min.js"></script>
+
+    <!-- FB Commant  -->
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v6.0"></script>
+    <!-- Fb Like -->
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v7.0"></script>
+</head>
+
+<body>
+    {% load static %}
+    <div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; bottom: #transparent-sticky-navbar">
+        <nav class="uk-navbar-container" uk-navbar style="position: relative; z-index: 980;">
+            <div class="uk-navbar-left">
+
+                <ul class="uk-navbar-nav">
+                    <!-- Shop -->
+                    <li class="uk-active">
+                        <a href="/Shop/" class="uk-animation-shake">
+                            <span class="uk-icon uk-margin-small-right" uk-icon="icon: star"></span>Shop
+                        </a>
+                    </li>
+
+                    <!-- Blog Contant -->
+                    <li class="uk-active">
+                        <a href="/Blog/"><span><img src="{% static 'blog/blogLogo.png' %}"> </span> Blog</a></li>
+                    <li>
+                        <a href="#">Polices</a>
+                        <div class="uk-navbar-dropdown">
+                            <ul class="uk-nav uk-navbar-dropdown-nav">
+                                <li class="uk-nav-header">Product Polices</li>
+
+                                <li>
+                                    <a href='/Blog/blogpost/1/'>Products & Prices</a>
+                                </li>
+                                <li>
+                                    <a href="/Blog/blogpost/4/">Products Informations</a>
+                                </li>
+                                <li>
+                                    <a href="/Blog/blogpost/3/">Product Warranty & Installation</a>
+                                </li>
+
+                                <li class="uk-nav-header">Order</li>
+                                <li>
+                                    <a href='/Blog/blogpost/4/'>Whre is My Order</a>
+                                </li>
+                                <li>
+                                    <a href="/Blog/blogpost/5/">Order Placement</a>
+                                </li>
+                                <li>
+                                    <a href="/Blog/blogpost/6/">Order Shipment</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+
+            </div>
+        </nav>
+    </div>
+    {% block body %} {% endblock %}
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    {% block js %} {% endblock %}
+</body>
+
+</html>
